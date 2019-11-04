@@ -1,0 +1,12 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "hFILFBPvySd1aHeqas6QkiGCfDo=",
+			"path": "housecontract/cc",
+			"revision": ""
+		}
+	],
+	"rootPath": "housecontract/main"
+}
