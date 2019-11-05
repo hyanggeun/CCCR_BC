@@ -23,4 +23,5 @@ if (username && password && config.get('users').hasOwnProperty(username) && conf
     return done(null, false);
 }
 }))
+
 module.exports=passport;
