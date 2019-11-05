@@ -1,0 +1,142 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+footer .footer-container {
+  margin: 0 auto;
+  width: 1080px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px; }
+  footer .footer-container p {
+    line-height: 15px;
+    color: #aaa9a9;
+    font-size: 10px; }
+    footer .footer-container p span {
+      font-weight: 550; }
+
+header {
+  margin-bottom: 50px;
+  box-shadow: 1px 2px 5px #ecebeb; }
+
+nav .nav-container {
+  width: 1080px;
+  justify-content: space-between;
+  margin: 0 auto;
+  display: flex; }
+  nav .nav-container .nav-left {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    nav .nav-container .nav-left ul {
+      display: flex; }
+      nav .nav-container .nav-left ul li {
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+        nav .nav-container .nav-left ul li .logo {
+          background: url("/ca@2x.e656b96d.d8b93832.png") no-repeat;
+          background-size: 100%;
+          height: 30px;
+          width: 30px;
+          margin-right: 20px; }
+        nav .nav-container .nav-left ul li a {
+          margin-right: 30px;
+          font-weight: bold;
+          text-decoration: none;
+          color: #444444; }
+  nav .nav-container .nav-right ul {
+    display: flex;
+    padding: 25px 0px; }
+    nav .nav-container .nav-right ul li {
+      margin-right: 5px; }
+      nav .nav-container .nav-right ul li:nth-child(2) nav .nav-container .nav-right ul li:nth-child(3) {
+        display: flex;
+        align-items: flex-end;
+        padding-bottom: 2px; }
+      nav .nav-container .nav-right ul li a {
+        font-weight: 700;
+        text-decoration: none;
+        color: black; }
+        nav .nav-container .nav-right ul li a .fa-user-circle {
+          color: #525252;
+          font-size: 20px; }
+        nav .nav-container .nav-right ul li a .fa-cog {
+          margin-left: 2px;
+          color: #353333;
+          font-size: 20px; }
+      nav .nav-container .nav-right ul li .user {
+        font-size: 13px;
+        color: gray;
+        font-family: Noto Sans CJK KR Regular,"맑은 고딕",malgun-gothic; }
+
+html {
+  font-family: 'Noto Sans KR', sans-serif; }
+  html header {
+    height: 70px; }
+  html .container {
+    width: 1080px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; }
+    html .container .logo {
+      background: url("/ca@2x.e656b96d.d8b93832.png") no-repeat;
+      background-size: 100%;
+      height: 80px;
+      width: 80px;
+      margin: 40px auto 10px; }
+    html .container .login-page {
+      display: block;
+      margin: 10px auto;
+      text-align: center;
+      font-weight: 300;
+      font-size: 25px; }
+    html .container .pannel {
+      margin-top: 20px; }
+      html .container .pannel p {
+        font-size: 14px;
+        width: 350px;
+        display: flex;
+        background: #e6e5e5;
+        border-radius: 8px 8px 0 0;
+        height: 2rem;
+        align-items: center;
+        padding-left: 20px;
+        box-sizing: border-box;
+        color: #4e4d4d;
+        border-top: 1px solid #cacaca;
+        border-left: 1px solid #cacaca;
+        border-right: 1px solid #cacaca; }
+      html .container .pannel form {
+        box-sizing: border-box;
+        border: 1px solid #cacaca;
+        border-radius: 0 0 8px 8px;
+        display: flex;
+        justify-content: center;
+        width: 350px;
+        height: 180px;
+        padding: 0; }
+        html .container .pannel form ul {
+          padding: 20px;
+          width: 100%; }
+          html .container .pannel form ul input {
+            height: 30px;
+            margin-bottom: 10px;
+            width: 100%;
+            border: none; }
+          html .container .pannel form ul .id, html .container .pannel form ul .password {
+            border-radius: 8px;
+            border: 1px solid #cacaca;
+            padding: 5px;
+            box-sizing: border-box; }
+          html .container .pannel form ul .submit {
+            margin-top: 10px;
+            border-radius: 8px;
+            color: white;
+            background: #337ab7;
+            height: 2.6rem; }
+
+
+
+
+/*# sourceMappingURL=/login.17b12c78.0b5a2cd1.css.map */

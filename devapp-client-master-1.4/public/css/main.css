@@ -1,0 +1,206 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+header {
+  margin-bottom: 50px;
+  box-shadow: 1px 2px 5px #ecebeb;
+}
+
+nav .nav-container {
+  width: 1080px;
+  justify-content: space-between;
+  margin: 0 auto;
+  display: flex;
+}
+nav .nav-container .nav-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+nav .nav-container .nav-left ul {
+  display: flex;
+}
+nav .nav-container .nav-left ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+nav .nav-container .nav-left ul li .logo {
+  background: url("ca@2x.png") no-repeat;
+  background-size: 100%;
+  height: 30px;
+  width: 30px;
+  margin-right: 20px;
+}
+nav .nav-container .nav-left ul li a {
+  margin-right: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #444444;
+}
+nav .nav-container .nav-right ul {
+  display: flex;
+  padding: 25px 0px;
+}
+nav .nav-container .nav-right ul li {
+  margin-right: 5px;
+}
+nav .nav-container .nav-right ul li:nth-child(2) nav .nav-container .nav-right ul li:nth-child(3) {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 2px;
+}
+nav .nav-container .nav-right ul li a {
+  font-weight: 700;
+  text-decoration: none;
+  color: black;
+}
+nav .nav-container .nav-right ul li a .fa-user-circle {
+  color: #525252;
+  font-size: 20px;
+}
+nav .nav-container .nav-right ul li a .fa-cog {
+  margin-left: 2px;
+  color: #353333;
+  font-size: 20px;
+}
+nav .nav-container .nav-right ul li .user {
+  font-size: 13px;
+  color: gray;
+  font-family: Noto Sans CJK KR Regular, "맑은 고딕", malgun-gothic;
+}
+
+footer {
+  border-top: 2px solid #e7e6e6;
+  margin-top: 20px;
+}
+footer .footer-container {
+  margin: 0 auto;
+  width: 1080px;
+  display: flex;
+  align-items: center;
+  height: 80px;
+}
+footer .footer-container p {
+  line-height: 15px;
+  color: #aaa9a9;
+  font-size: 10px;
+}
+footer .footer-container p span {
+  font-weight: 550;
+}
+
+html {
+  font-family: "Noto Sans KR", sans-serif;
+}
+html .container {
+  margin: 0 auto;
+  width: 1080px;
+  min-height: 1024px;
+}
+html .container h1 {
+  display: blcok;
+  margin-bottom: 30px;
+  font-size: 25px;
+  font-weight: bold;
+  color: #464242;
+}
+html .container [class^=panel-] {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-areas: "info info info info  info-2 info-2";
+  padding: 0 20px;
+  box-shadow: 1px 2px 2px 2px gray;
+  margin-bottom: 20px;
+}
+html .container .info {
+  grid-area: info;
+  margin: 10px 0;
+}
+html .container .info * {
+  line-height: 10px;
+  margin: 5px;
+}
+html .container .info .id {
+  color: #337ab7;
+}
+html .container .info .place {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+html .container .info .address {
+  font-size: 14px;
+  color: gray;
+}
+html .container .info-2 {
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  grid-area: info-2;
+}
+html .container .info-2 .pp {
+  margin-right: 20px;
+}
+html .container .info-2 .pp .price {
+  color: gray;
+  font-size: 14px;
+}
+html .container .info-2 .pp .pay {
+  color: #337ab7;
+}
+html .container .info-2 input {
+  min-width: 100px;
+  min-height: 50px;
+  background: #337ab7;
+  color: white;
+  font-weight: bold;
+  border: none;
+}
+html .container .info-2 input:active {
+  background: #337ab7;
+}
+html .container .pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+html .container .pagination-container .pagination {
+  margin: 0 auto;
+  display: flex;
+}
+html .container .pagination-container .pagination li {
+  margin-left: 0;
+  box-shadow: 1px 0 0 0 #b4b2b2, 0 1px 0 0 #b4b2b2, 1px 1px 0 0 #b4b2b2, 1px 0 0 0 #b4b2b2 inset, 0 1px 0 0 #b4b2b2 inset;
+}
+html .container .pagination-container .pagination li a {
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #337ab7;
+}
+html .container .pagination-container .pagination li:first-child, html .container .pagination-container .pagination li:last-child {
+  width: 80px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html .container .pagination-container .pagination li:first-child {
+  border-radius: 6px 0px 0px 6px;
+}
+html .container .pagination-container .pagination li:last-child {
+  border-radius: 0px 6px 6px 0px;
+}
+html .container .pagination-container .pagination li:hover {
+  background: #5555fa;
+}
+html .container .pagination-container .pagination li:hover a {
+  color: white;
+}
+
+/*# sourceMappingURL=/main.77bb5cfd.css.map */

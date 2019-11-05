@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+    <script src="https://kit.fontawesome.com/f04cea4735.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/login.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrap">
+            <div class="logo"></div>
+            <p class="login-page">Login Page</p>
+            <div class="pannel">
+                <p class="login">로그인</p>
+                <form action="/login" method="post">
+                    <ul>   
+                        <li><input class="id" name="username" placeholder="아이디" minlength="1"></li>
+                        <li><input type="password" name="password"class="password" placeholder="비밀번호" minlength="1"></li>
+                        <li><input type="submit" value="로그인" class="submit"></li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <p>
+                Copyright 2019. CCCR2-2 Corp. ALL RIGHTS RESERVED.<br>
+                Based on <span>HyperledgerFabric</span> 
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

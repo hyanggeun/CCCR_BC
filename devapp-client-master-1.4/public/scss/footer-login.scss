@@ -1,0 +1,19 @@
+footer{
+    // background:rgb(124, 123, 123);
+    .footer-container{
+        margin: 0 auto;
+        width: 1080px;
+    display:flex;
+    justify-content: center ;  
+    align-items:center;
+    height: 80px;
+    p{
+        line-height: 15px;
+        color: rgb(170, 169, 169);
+        font-size: 10px;
+        span{
+            font-weight:550;
+        }
+    }
+}
+}

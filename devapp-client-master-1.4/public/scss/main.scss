@@ -1,0 +1,136 @@
+//main
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css); 
+@import "header","footer";
+@mixin size($w:100px,$h:100px){
+    width:$w;
+    height:$h;
+}
+@mixin link-font($color:black){
+    font-weight: bold;
+    text-decoration: none;
+    color: $color;
+}
+
+$sz: 100px;
+$g: grid;
+html{
+    font-family: 'Noto Sans KR', sans-serif;
+
+.container{
+    margin: 0 auto;
+    width: 1080px;
+    min-height: 1024px;
+    h1{
+        display:blcok;
+        margin-bottom: 30px;
+        font-size: 25px;
+        font-weight: bold;
+        color: rgb(70, 66, 66);
+    }  
+    [class^="panel-"]{
+        display:$g;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-areas:
+        "info info info info  info-2 info-2";
+        padding: 0 20px;
+        box-shadow: 1px 2px 2px 2px gray;
+        margin-bottom: 20px;
+    }
+    .info{
+        grid-area: info;
+        margin: 10px 0;
+        *{
+            line-height: 10px;
+            margin:5px;
+        }
+        .id{
+            color:#337ab7;
+            
+        }
+        .place{
+            font-weight: 500;
+            margin-bottom:10px;
+        }
+        .address{
+            font-size:14px;
+            color: gray;
+        }
+    }
+    .info-2{
+        
+        justify-content:flex-end;
+        display: flex;
+        align-items:center;
+        margin: 20px 0;
+        grid-area: info-2;
+        .pp{
+            margin-right: 20px;
+            .price{
+                color: gray;
+                font-size: 14px;
+                
+            }
+            .pay{
+            color: #337ab7;
+            }
+        }
+        input{
+            min-width: 100px;
+            min-height: 50px;
+            background: #337ab7;
+            color: white;
+            font-weight: bold;
+            border:none;
+            &:active{
+                background: #337ab7;
+            }
+        }
+        
+    }
+    .pagination-container{
+        display: flex;
+        justify-content: center;
+        margin-top:50px;
+    .pagination{
+        margin: 0 auto;
+        display: flex;
+        
+            li{
+                margin-left: 0;
+                box-shadow: 
+                1px 0 0 0 rgb(180, 178, 178), 
+                0 1px 0 0 rgb(180, 178, 178), 
+                1px 1px 0 0 rgb(180, 178, 178),
+                1px 0 0 0 rgb(180, 178, 178) inset, 
+                0 1px 0 0 rgb(180, 178, 178) inset;
+                a{
+                    @include link-font;
+                    width:30px;
+                    height:30px;
+                    display:flex;
+                    align-items: center;
+                    justify-content: center;
+                    color:#337ab7;
+                }
+                &:first-child, &:last-child{
+                    width:80px;
+                    height:30px;
+                    display:flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                &:first-child{
+                    border-radius: 6px 0px 0px 6px;
+                }
+                &:last-child{
+                    border-radius: 0px 6px 6px 0px;
+                }
+                &:hover{
+                    background:rgb(85, 85, 250);
+                    a{color:white;}   
+                }
+            }                 
+        }
+    }
+}
+}
