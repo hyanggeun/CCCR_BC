@@ -479,8 +479,48 @@ let BlockchainService = function() {
         });
     };
 
+    vm.getBlocks = async function(enrollId, noOfLastBlocks) {
 
+        let org = CONFIG.users[enrollId].org;
+        let channel;
 
+        const clientObj = await helper.initObject(enrollId, org,false)
+        channel	 = clientObj.channel;
+    
+        const {height} = await channel.queryInfo();
+
+        const blockPromises = {};
+        blockPromises[Symbol.iterator] = function* () {
+          for (let i = 1; i <= height; i++) {
+            yield channel.queryBlock(height.sub(i).toNumber());
+          }
+        };
+        const blocks = await Promise.all([...blockPromises]);
+        
+        return blocks.map(unmarshalBlock);
+      }
+        
+    function unmarshalBlock(block) {
+        const transactions = Array.isArray(block.data.data) ?
+        block.data.data.map(({
+            payload: {
+                header,
+                data
+            }
+        }) => {
+            const {channel_header} = header;
+            const {type,timestamp} = channel_header;
+            const rwset = data.actions;
+            return {type,timestamp,rwset
+                };
+        }) : [];
+        return {
+        id: block.header.number.toString(),
+        fingerprint: block.header.data_hash.slice(0, 20),
+        transactions,
+        };
+    }
+  
 }
 
 module.exports = BlockchainService;

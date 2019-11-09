@@ -32,13 +32,12 @@ app.use(passport.session());
 
 app.use(express.static(__dirname+'/public'));
 
-
 app.set('views', __dirname + '/public');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 app.use('/api',apiRouters);
 app.use('/', routers);
 
-server.listen(3000,()=>{
-    console.log("Server starting on 3000");
+server.listen(3030,()=>{
+    console.log("Server starting on 3030");
 });

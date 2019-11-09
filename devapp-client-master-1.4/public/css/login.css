@@ -2,7 +2,7 @@
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 footer .footer-container {
   margin: 0 auto;
-  width: 1080px;
+  max-width: 1080px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,7 +19,7 @@ header {
   box-shadow: 1px 2px 5px #ecebeb; }
 
 nav .nav-container {
-  width: 1080px;
+  max-width: 1080px;
   justify-content: space-between;
   margin: 0 auto;
   display: flex; }
@@ -74,7 +74,7 @@ html {
   html header {
     height: 70px; }
   html .container {
-    width: 1080px;
+    max-width: 1080px;
     display: flex;
     justify-content: center;
     align-items: center;

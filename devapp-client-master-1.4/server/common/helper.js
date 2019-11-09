@@ -37,68 +37,28 @@ module.exports.initObject = function(enrollId, peerAdminOrg,getAdmin,matchOrg){
 
     Client.setConfigSetting('request-timeout', 60000);
     let ehs = [];
-    // ① Client 인스턴스 생성
     let client = new Client();
     let channel = {};
     let targets = [];
-    //user info for set up
     const USER = CONFIG.users[enrollId];
     const USER_ORG = CONFIG.users[enrollId].org;
-    //admin user name for set up
     let member = new User(enrollId);
     let targetOrg = peerAdminOrg ? peerAdminOrg : USER_ORG;
 
 
     client.setCryptoSuite(cryptoSuite);
-    // member.setCryptoSuite(cryptoSuite);
 
-    //set peer form config
-    // ② 클라이언트용 KeyValueStore 설정
+   
     return Client.newDefaultKeyValueStore({path: CONFIG['keyValueStore']
     }).then((store) => {
-        // logger.info('Setting client keyValueStore to: ' + JSON.stringify(store));
         client.setStateStore(store);
-        // ③ FabricCAClientImpl 생성
-        // 1. fabriccaclient/lib/FabricCAClient 생성
-        //     return new copService(CONFIG[targetOrg].ca.url,tlsOptions,CONFIG[targetOrg].ca.name);
-        // },(err)  => {
-        //     logger.error(err);
-        //     logger.info('Error initializing KeyValueStore. Exiting.');
-        // })
-        // .then((cop) => {
-        //
-        //     // ④ 실행 사용자 등록
-        //     // 2. 사용자 등록try enroll
-        //     return cop.enroll({
-        //         enrollmentID: enrollId,
-        //         enrollmentSecret : USER.secret
-        //     });
-        // }, (err) => {
-        //     logger.info('Failed to initilize the COP service: ' + err);
-        // })
-        // .then((enrollment)=>{
-        //
-        //     // 3. 인증 오브젝트(암호키와 ECert 세트)
-        //     return member.setEnrollment(enrollment.key, enrollment.certificate, CONFIG[targetOrg].mspid);
-        // })
-        // .then(() => {
-
-        // ⑤ 실행 컨텍스트에 사용자 설정
-        // 4. 클라이언트에 사용자 컨텍스트를 설정
-        // return client.getUserContext(enrollId,true);
         return module.exports.getSubmitter(client,getAdmin, peerAdminOrg, enrollId);
     })
         .then((user) => {
-            // logger.info("get user "+user._name);
-            // logger.info("new Channel");
+           
             channel = client.newChannel(CONFIG.channel.name);
-            //orderer
-            // ④ 오더러 추가
-
-
             let data = fs.readFileSync(path.join(CONFIG['cert_dir'],CONFIG.orderer['tls_cacerts']));
             let caroots = Buffer.from(data).toString();
-            // make sure the cert is OK
             caroots = Client.normalizeX509(caroots);
 
             channel.addOrderer(
@@ -110,16 +70,11 @@ module.exports.initObject = function(enrollId, peerAdminOrg,getAdmin,matchOrg){
                     }
                 )
             );
-
             for(let key in CONFIG){
-                // it depend on org name ..
                 matchOrg = matchOrg ? matchOrg : peerAdminOrg;
                 if(CONFIG.hasOwnProperty(key) && key.indexOf(matchOrg) === 0){
                     for(let pr in CONFIG[key]) {
-                        // add all peer in ORG
-                        // ② 채널에 각 조직의 피어를 추가
                         if(CONFIG[key].hasOwnProperty(pr) && pr.indexOf('peer') === 0){
-                            // ③ TLS 접속용 인증서 불러오기
                             let data = fs.readFileSync(path.join(CONFIG['cert_dir'],CONFIG[key][pr]['tls_cacerts']));
                             let peer = client.newPeer(
                                 CONFIG[key][pr].requests,
@@ -130,22 +85,18 @@ module.exports.initObject = function(enrollId, peerAdminOrg,getAdmin,matchOrg){
                             );
                             channel.addPeer(peer);
                             targets.push(peer);
-                            // logger.info('peer added ' + peer);
                             const eh = channel.newChannelEventHub(peer);
                             ehs.push(eh);
                         }
                     }
                 }
             }
-
         }, (err) => {
 
             logger.error('Failed init ' + err);
             throw new Error('Failed init ' + err);
-
         })
         .then(()=>{
-            // logger.info("enroll and setContext good");
             initObjects[enrollId] = {
                 client 	 : client,
                 channel  : channel,
@@ -180,7 +131,6 @@ module.exports.getSubmitter = function(client, peerOrgAdmin, org, enrollId ,pass
     if (peerAdmin) {
         return getAdmin(client, userOrg);
     } else {
-        // return getMember('admin', 'ry3XQB@Tk&', client, userOrg);
         return getMember(enrollId, password, client, userOrg);
     }
 };
@@ -201,7 +151,6 @@ function getAdmin(client, userOrg) {
     return client.getUserContext(username, true)
         .then((user) => {
             if (user && user.isEnrolled()) {
-                // t.pass('Successfully loaded member from persistence');
                 return Promise.resolve(user);
             }else{
                 return Promise.resolve(client.createUser({
@@ -223,10 +172,8 @@ function getMember(username, password, client, userOrg) {
 
     return client.getUserContext(username, true)
         .then((user) => {
-            // eslint-disable-next-line no-unused-vars
             return new Promise((resolve, reject) => {
                 if (user && user.isEnrolled()) {
-                    // t.pass('Successfully loaded member from persistence');
                     return resolve(user);
                 }
 
@@ -241,16 +188,12 @@ function getMember(username, password, client, userOrg) {
                 }
                 member.setCryptoSuite(cryptoSuite);
 
-                // need to enroll it with CA server
-                // const cop = new copService(caUrl, tlsOptions, CONFIG[userOrg].ca.name, cryptoSuite);
                 const cop = new FabricCAServices(caUrl, tlsOptions, CONFIG[userOrg].ca.name, cryptoSuite);
 
                 return cop.enroll({
                     enrollmentID: username,
                     enrollmentSecret: password
                 }).then((enrollment) => {
-                    // t.pass('Successfully enrolled user \'' + username + '\'');
-
                     return member.setEnrollment(enrollment.key, enrollment.certificate, CONFIG[userOrg].mspid);
                 }).then(() => {
                     let skipPersistence = false;
@@ -262,8 +205,6 @@ function getMember(username, password, client, userOrg) {
                     return resolve(member);
                 }).catch((err) => {
                     logger.error(err.message);
-                    // t.fail('Failed to enroll and persist user. Error: ' + err.stack ? err.stack : err);
-                    // t.end();
                 });
             });
         });
@@ -271,10 +212,7 @@ function getMember(username, password, client, userOrg) {
 
 
 module.exports.register = function(username, secret) {
-    // logger.info('module.exports.register. username:'+username +" secret:"+secret);
-    // logger.info('register called.');
     let fabric_client = new Client();
-    //admin user info for set up
     const ADMIN_USER = CONFIG['adminUser'];
     const ADMIN_USER_ORG = CONFIG.users[username].org;
     const store_path =module.exports.keyValueStore();
@@ -288,11 +226,8 @@ module.exports.register = function(username, secret) {
 
     return Client.newDefaultKeyValueStore({ path: store_path
     }).then((state_store) => {
-        // assign the store to the fabric client
         fabric_client.setStateStore(state_store);
         let crypto_suite = Client.newCryptoSuite();
-        // use the same location for the state store (where the users' certificate are kept)
-        // and the crypto store (where the users' keys are kept)
         let crypto_store = Client.newCryptoKeyStore({path: store_path});
         crypto_suite.setCryptoKeyStore(crypto_store);
         fabric_client.setCryptoSuite(crypto_suite);
@@ -301,18 +236,12 @@ module.exports.register = function(username, secret) {
         if('admin'==username) {
             return ca_client.enroll({enrollmentID: ADMIN_USER, enrollmentSecret: CONFIG.users[ADMIN_USER].secret});
         }else {
-            // ① 등록(register)을 위해서는 관리자로 사용자 등록(enroll)을 해야 한다.
-            //need admin enrollment
             return ca_client.enroll({
                 enrollmentID: ADMIN_USER, enrollmentSecret: CONFIG.users[ADMIN_USER].secret
             }).then((enrollment) => {
-
-                // logger.info("get admin enrollment: " + ADMIN_USER);
                 member = new User(ADMIN_USER);
                 return member.setEnrollment(enrollment.key, enrollment.certificate, ADMIN_USER_ORG);
             }).then(() => {
-                // ② 등록을 담당할 관리 사용자를 지정하고 새로운 사용자를 등록
-                // secret 지정은 옵션
                 return ca_client.register({
                     enrollmentID: username,
                     enrollmentSecret: secret,
@@ -320,7 +249,6 @@ module.exports.register = function(username, secret) {
                     attrs: []
                 }, member);
             }).then((secret) => {
-                // next we need to enroll the user with CA server
                 console.log('Successfully registered ' + username + ' - secret:' + secret);
                 return ca_client.enroll({enrollmentID: username, enrollmentSecret: secret});
             });

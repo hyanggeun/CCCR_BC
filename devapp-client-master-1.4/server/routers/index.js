@@ -6,6 +6,7 @@ router.get('/',(req,res)=>{
     res.render('login.html');
 })
 
+
 router.get('/login',(req,res)=>{
     res.render('login.html');
 })
@@ -32,6 +33,14 @@ router.get('/list',isAuthenticated,(req,res)=>{
 
 router.get('/user',(req,res)=>{
     res.render('user.html');
+})
+
+router.get('/blocks', (req,res)=>{
+    res.render('socketTest.html');
+})
+
+router.get('/register',(req,res)=>{
+    res.render('register.html');
 })
 
 function isAuthenticated(req,res,next){

@@ -2,61 +2,91 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>하이퍼레저</title>
+    <title>하이퍼레저 리스트</title>
      <!-- 리셋.css -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
-    <script src="https://kit.fontawesome.com/f04cea4735.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/main.css">
-</head>
-<body>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+     <script src="https://kit.fontawesome.com/f04cea4735.js" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="css/list.css">
+ </head>
+ <body>
     <header>
         <nav>
             <div class="nav-container">
                 <div class="nav-left">
                     <ul>
-                        <li><div class="logo"></div></li>    
-                        <li><a href="#">Register</a></li>
-                        <li><a href="/transferhouse">Transfer</a></li>
-                        <li><a href="/list">List</a></li>
+                        <li>
+                            <div class="logo"></div>
+                        </li>
+                        <li>
+                            <p>CCCR 2-2</p>
+                        </li>
                     </ul>
                 </div>
                 <div class="nav-right">
                     <ul>
                         <li><a href="#"><i class="fas fa-user-circle"></i></a></li>
                         <li><a href="#" class="user"></a></li>
-                        <li><a id="logout" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+                        <li><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>
                     </ul>
                 </div>
             </div>
+            <div class="mobile-bar">
+                <i class="fas fa-bars" id="open"></i>
+                <p>Transfer</p>
+            </div>
         </nav>
-    </header>
-
+        </header>
     <div class="container">
-        <h1>Transaction list</h1>
-
-        <div class="list-body">
-        </div>
-        <div class="pagination-container">
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">이전</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" href="#">다음</a></li>
+    <h1>Transaction list</h1>
+    <div class="content">
+            <div class="menuModal">
+                <aside class="mobile-menu">
+                    <ul>
+                        <li>
+                            <div>
+                                <p>menu</p>
+                                <i class="fas fa-times closeTab"></i>
+                            </div>
+                        </li>
+                        <li><a href="/register">Register</a></li>
+                        <li><a href="/transferhouse">Transfer</a></li>
+                        <li><a href="/list">List</a></li>
+                    </ul>
+                </aside>
+            </div>
+            <aside class="wide-menu">
+                <ul>
+                    <li><a href="/register">Register</a></li>
+                    <li><a href="/transferhouse">Transfer</a></li>
+                    <li><a href="/list">List</a></li>
                 </ul>
+            </aside>
+        <div class="list-body">
+         <h2>Transfer</h2>
         </div>
-        
+
     </div>
+    </div>
+
+
+
     <footer>
         <div class="footer-container">
-            <p>
-                Copyright 2019. CCCR2-2 Corp. ALL RIGHTS RESERVED.<br>
-                Based on <span>HyperledgerFabric</span> 
-            </p>
+            <div class="copyright">
+                <p>
+                    Copyright 2019. CCCR2-2 Corp. ALL RIGHTS RESERVED.<br>
+                    Based on <span>HyperledgerFabric</span> 
+                </p>
+            </div>
         </div>
     </footer>
+    <div class="block" id="ledger">
+        <div class="card-container" id="card-container">
+        </div>
+        <i class="fas fa-sort-down" id="sort-btn"  style="transform:rotate(180deg);"></i>
+    </div>
     <script src="js/list.js"></script>
+    <script src="js/block.js"></script>
 </body>
 </html>

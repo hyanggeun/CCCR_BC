@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+<script src="https://kit.fontawesome.com/f04cea4735.js" crossorigin="anonymous"></script>
+
+<style>
+.block{
+    display: flex;
+    width: 100%;
+}
+.card{
+    width: 100%;
+    min-width:150px;
+    overflow: auto;
+}
+</style>
+<div class="container-fluid">
+        <div class="block" id="ledger">
+        </div>
+</div>
+
+<script>
+    async function start(){
+        const response = await fetch('/api/blocks',{method: 'post', body: ''});
+        const myJson = await response.json();
+        console.log(myJson)
+        let content = ""; 
+        myJson.forEach(element => {
+            let id = element.id
+            let fingerprint = element.fingerprint
+            let tx = element.transactions
+            let txList = ""
+            tx.forEach(element => {
+                txList += `<li>${element.timestamp}</li>`
+            })
+            content += `<div class="card" >
+                            <div class="card-body">
+                            <h6><span>ID ${id}</span></h6>
+                            <p>지문: ${fingerprint}</p>
+                            </div>
+                            <ul >
+                                ${txList}
+                            </ul>
+                        </div>`
+        });
+        document.getElementById('ledger').innerHTML = content
+    }
+    start()
+</script>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>하이퍼레저</title>
+     <!-- 리셋.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+    <script src="https://kit.fontawesome.com/f04cea4735.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="nav-left">
+                    <ul>
+                        <li><div class="logo"></div></li>    
+                        <li><p>CCCR 2-2</p></li>
+                    </ul>
+                </div>
+                <div class="nav-right">
+                    <ul>
+                        <li><a href="#"><i class="fas fa-user-circle"></i></a></li>
+                        <li><a href="#" class="user"></a></li>
+                        <li><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid">
+    <h1><span class="badge badge-primary">Register</span></h1>
+    <div class="row">
+        <div class="col-2">
+            <ul class="list-group">
+                <li class="list-group-item"><a href="/register">Register</a></li>
+                <li class="list-group-item"><a href="/transferhouse">Transfer</a></li>
+                <li class="list-group-item"><a href="/list">List</a></li>
+            </ul>
+        </div>
+        <div class="col-8 registerContent">
+            <h2>Register</h2>
+            <form class="rege-form" method="POST">
+                <p>건물명</p>
+                <input type="text" id="name" required="" oninvalid="this.setCustomValidity('건물명을 입력해 주세요')" oninput="setCustomValidity('')" maxlength="10">
+                <p>주소<p>
+                <input type="text" id="address" required="" oninvalid="this.setCustomValidity('주소를 입력해주세요')" oninput="setCustomValidity('')" maxlength="10">
+                <p>가격 (단위:억)</p>
+                <input type="number" id="price" required=""  oninvalid="this.setCustomValidity('가격을 입력해주세요')" oninput="setCustomValidity('')" maxlength="10">
+                <input type="submit" id="smt" value="등록">
+            </form>
+        </div>      
+    </div>
+    </div>
+
+    <script src="js/register.js"></script>    
+    
+    <button data-toggle="collapse" data-target="#demo" type="button" class="btn btn-primary btn-lg btn-block mt-5">원장</button>
+
+    <div id="demo" class="collapse">
+        <iframe src="./socketTest.html" style="height:200px;width: 100%;"></iframe>
+    </div>
+        
+    <footer>
+        <div class="footer-container">
+            <p>
+                Copyright 2019. CCCR2-2 Corp. ALL RIGHTS RESERVED.<br>
+                Based on <span>HyperledgerFabric</span> 
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
