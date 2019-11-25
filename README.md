@@ -19,6 +19,15 @@ localhost:3030 접속
 
 ## 업데이트 내역
 
+2019 11월 25일 
+최종본 완성
+ 
+2019 11월 6일 
+list 페이지 수정, 프론트엔드 개발
+
+2019 11월 5일 
+체인코드, backend list, register 페이지 완성
+
 <!-- Markdown link & img dfn's -->
 [npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/datadog-metrics
