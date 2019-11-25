@@ -5,6 +5,7 @@ const http = require('http');
 const express = require('express');
 let app = express();
 let server = http.createServer(app);
+const flash = require("connect-flash");
 
 
 const path = require('path');
@@ -21,7 +22,7 @@ let apiRouters = require('./server/routers/api/api');
 app.use(favicon(path.join(__dirname, 'public/css', 'ca@2x.png')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(flash());
 
 app.use(cookieParser());
 app.use(session({resave: 'false', saveUninitialized: 'true',

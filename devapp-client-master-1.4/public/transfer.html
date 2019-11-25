@@ -4,91 +4,122 @@
     <meta charset="UTF-8">
     <title>하이퍼레저</title>
      <!-- 리셋.css -->
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
-     <script src="https://kit.fontawesome.com/f04cea4735.js" crossorigin="anonymous"></script>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+    <script src="https://kit.fontawesome.com/f04cea4735.js" crossorigin="anonymous"></script>
      <link rel="stylesheet" href="css/transfer.css">
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
- 
+     <script src="js/mobile.js" defer></script>
  </head>
  <body>
-     <header>
-         <nav>
-             <div class="nav-container">
-                 <div class="nav-left">
-                     <ul>
-                         <li><div class="logo"></div></li>    
-                         <li><a href="/register">Register</a></li>
-                         <li><a href="/transferhouse">Transfer</a></li>
-                         <li><a href="/list">List</a></li>
-                     </ul>
-                 </div>
-                 <div class="nav-right">
-                     <ul>
-                         <li><a href="#"><i class="fas fa-user-circle"></i></a></li>
-                         <li><a href="#" class="user"></a></li>
-                         <li><a id="logout" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
-                     </ul>
-                 </div>
-             </div>
-         </nav>
-     </header>
-    <div class="container">
-    <h1>Transaction list</h1>
-    <div id="myModal" class="modal">
+     <div class="wrap">
+        <div class="main">
+                <aside class="wide-menu" >           
+                    <div class="sideIcons">
+                        <div><div class="logo"></div></div>
+                        <div>
+                            <a href="/register" id="registerEvent"><i class="fas fa-file-signature"></i></a>
+                            <a href="/register" class="side-tag-r">건물 등록</a>
+                        </div>
+                        <div>
+                            <a href="/transferhouse" id="transferEvent"><i class="fas fa-exchange-alt"></i></a>
+                            <a href="/transferhouse" class="side-tag-t">소유권 이전</a>
+                        </div>
+                        <div>
+                            <a href="/list" id="listEvent"><i class="fas fa-list-ul"></i></a>
+                            <a href="/list" class="side-tag-l">등본 조회</a>
+                        </div>
+                    </div>
+                </aside>
+            <div class="container">
+            <div id="myModal" class="modal">
+                
+                    <!-- Modal content -->
+                <form class="modal-content">
+                 <a class="end"><p class="tr-logo">Transfer</p><i class="close fas fa-times"></i></a>                                                               
+                <div class="modal-container">
+                    <div class="search-bar">
+                        <h2>소유권 이전</h2>
+                        <input type="hidden" id="select-addr"> 
+                        <input type="text" name="username" class="modal-input" placeholder="사용자 이름" required=" " oninvalid="this.setCustomValidity('보낼 사용자명을 입력해 주세요')" oninput="setCustomValidity('')">
+                        <input type="text" name="price" class="modal-input" id="transferPrice" placeholder="판매 금액" required="" oninvalid="this.setCustomValidity('가격을 입력해 주세요')" oninput="setCustomValidity('')">
+                        <input type="submit" class="search" value="검색">
+                    </div>
+                </div>
+                
+                <div class="transferlist"> 
+                </div>
+                </form>
+                <div >
         
-            <!-- Modal content -->
-        <form class="modal-content">
-         <a class="end"><p class="tr-logo">Transfer</p><i class="close fas fa-times"></i></a>                                                               
-        <div class="modal-container">
-            <div class="search-bar">
-                <h2>Search User</h2>
-                <input type="text" name="username" class="modal-input">
-                <input type="submit" class="search" value="검색">
+                </div>
+            </div>  
+                <div class="content">
+                    <header>
+                            <nav>
+                                <div class="nav-container">
+                                    <div class="nav-left">
+                                        <ul>
+                                            <li>
+                                                <i class="fas fa-exchange-alt"></i>
+                                                <h1>소유권 이전</h1>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="nav-right">
+                                        <ul>
+                                            <li><a href="#"><i class="fas fa-user-circle"></i></a></li>
+                                            <li><a href="#" class="user"></a></li>
+                                            <li><a href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="mobile-bar">
+                                    <i class="fas fa-bars" id="open"></i>
+                                </div>
+                            </nav>
+                            <div class="menuModal">
+                                <aside class="mobile-menu">
+                                    <ul>
+                                        <li>
+                                            <div>
+                                                <p>menu</p>
+                                                <i class="fas fa-times closeTab"></i>
+                                            </div>
+                                        </li>
+                                        <li><a href="/register">건물 등록</a></li>
+                                        <li><a href="/transferhouse">소유권 이전</a></li>
+                                        <li><a href="/list">등본 조회</a></li>
+                                    </ul>
+                                </aside>
+                            </div>
+                    </header>
+                    <div class="list-wrap">
+                        <div class="list-body">
+                            <div class="transferPage">
+                            </div>
+                            <div class="pagination-container">
+                                <ul class="pagination">
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <footer>
+                    <div class="footer-container">
+                        <div class="copyright">
+                            <p>
+                                Copyright 2019. CCCR2-2 Corp. ALL RIGHTS RESERVED.<br>
+                                Based on <span>HyperledgerFabric</span> 
+                            </p>
+                        </div>
+                    </div>
+                </footer>
             </div>
-        </div>
-        
-        <div class="transferlist"> 
-        </div>
-        </form>
-        <div >
 
         </div>
-    </div>  
-    
-       
-
-        <div class="list-body">    
-        </div>
-        <div class="pagination-container">
-            <ul class="pagination">
-                <!-- <li class="page-item"><a class="page-link" href="#">이전</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item"><a class="page-link" href="#">다음</a></li> -->
-            </ul>
-        </div>
-    </div>
-    
-    <button data-toggle="collapse" data-target="#demo" type="button" class="btn btn-primary btn-lg btn-block mt-5">원장</button>
-
-    <div id="demo" class="collapse">
-        <iframe src="./socketTest.html" style="height:200px;width: 100%;"></iframe>
-    </div>
-
-    <footer>
-        <div class="footer-container">
-            <p>
-                Copyright 2019. CCCR2-2 Corp. ALL RIGHTS RESERVED.<br>
-                Based on <span>HyperledgerFabric</span> 
-            </p>
-        </div>
-    </footer>
+     </div>
     <script src="js/transfer.js"></script>
+    <script src="js/layout.js"></script>
 </body>
 </html>

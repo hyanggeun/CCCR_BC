@@ -30,6 +30,8 @@ services:
     command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.org1.example.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/b35c5dc5fbcfaa863ce910107721b2317045ebce603eac03413b614fd5c8803e_sk -b admin:ry3XQB@Tk\& -d'
     volumes:
       - ./crypto-config/peerOrganizations/org1.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
 
   ca.org2.example.com:
     extends:
@@ -44,6 +46,9 @@ services:
     command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.org2.example.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/e04420e5256b94de4ca2bd95f666a9dad11260471f72b8225aedd49e3cb0a7f3_sk -b admin:ry3XQB@Tk\& -d'
     volumes:
       - ./crypto-config/peerOrganizations/org2.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+
 
   ca.org3.example.com:
     extends:
@@ -58,6 +63,9 @@ services:
     command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.org3.example.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/4c0cf6881cd9dce3e13b49724b9bfe80127f544b049414f7d7579a3f35118d03_sk -b admin:ry3XQB@Tk\& -d'
     volumes:
       - ./crypto-config/peerOrganizations/org3.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+
 
   orderer.example.com:
     container_name: orderer.example.com
@@ -74,14 +82,20 @@ services:
       - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/msp/orderer/tls/server.key
       - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/msp/orderer/tls/server.crt
       - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/msp/orderer/tls/ca.crt]
+      - ORDERER_OPERATIONS_LISTENADDRESS=orderer.example.com:9443
+      - ORDERER_METRICS_PROVIDER=prometheus
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderer
     command: orderer
     ports:
       - 7050:7050
+      - 29443:9443
     volumes:
-        - ./config/:/etc/hyperledger/configtx
-        - ./crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/:/etc/hyperledger/msp/orderer
-        - ./crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/msp/peerOrg1
+      - ./config/:/etc/hyperledger/configtx
+      - ./crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/:/etc/hyperledger/msp/orderer
+      - ./crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/msp/peerOrg1
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+
     networks:
       - basic
 
@@ -102,8 +116,11 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
     command: peer node start
     volumes:
-        - /var/run/:/host/var/run/
-        - ./config:/etc/hyperledger/configtx
+      - /var/run/:/host/var/run/
+      - ./config:/etc/hyperledger/configtx
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+
     networks:
       - basic
 
@@ -117,9 +134,12 @@ services:
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/users/Admin@org1.example.com/msp
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.example.com:7051
       - CORE_PEER_ADDRESS=peer0.org1.example.com:7051
+      - CORE_OPERATIONS_LISTENADDRESS=peer0.org1.example.com:9443
+      - CORE_METRICS_PROVIDER=prometheus
     ports:
       - 17051:7051
       - 17053:7053
+      - 19443:9443
     volumes:
         - ./crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp:/etc/hyperledger/msp/peer
         - ./crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls:/etc/hyperledger/fabric/tls
@@ -206,6 +226,9 @@ services:
         - ./config/:/etc/hyperledger/configtx
         - ./crypto-config:/etc/hyperledger/crypto-config
         - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+        - "/etc/timezone:/etc/timezone:ro"
+        - "/etc/localtime:/etc/localtime:ro"
+
     networks:
         - basic
     #depends_on:

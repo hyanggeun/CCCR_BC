@@ -12,7 +12,9 @@ let config = require("config");
 let CONFIG =config['asset'];
 let helper = require('../helper.js');
 let utils = require('fabric-client/lib/utils.js');
-let logger = utils.getLogger('blockchainService');
+var log4js = require('log4js');
+var logger = log4js.getLogger();
+// let logger = utils.getLogger('blockchainService');
 
 //for block api
 const ADMIN_USER = CONFIG['adminUser'];
@@ -499,28 +501,69 @@ let BlockchainService = function() {
         
         return blocks.map(unmarshalBlock);
       }
-        
-    function unmarshalBlock(block) {
-        const transactions = Array.isArray(block.data.data) ?
-        block.data.data.map(({
-            payload: {
-                header,
-                data
-            }
-        }) => {
-            const {channel_header} = header;
-            const {type,timestamp} = channel_header;
-            const rwset = data.actions;
-            return {type,timestamp,rwset
-                };
-        }) : [];
-        return {
-        id: block.header.number.toString(),
-        fingerprint: block.header.data_hash.slice(0, 20),
-        transactions,
-        };
-    }
+      
+      vm.getTxs = async function(enrollId, noOfLastBlocks) {
+          let org = CONFIG.users[enrollId].org;
+          let channel;
   
+          const clientObj = await helper.initObject(enrollId, org,false)
+          channel	 = clientObj.channel;
+      
+          const {height} = await channel.queryInfo();
+  
+          const blockPromises = {};
+          blockPromises[Symbol.iterator] = function* () {
+            for (let i = 1; i <= height; i++) {
+              yield channel.queryBlock(height.sub(i).toNumber());
+            }
+          };
+          const blocks = await Promise.all([...blockPromises]);
+          
+          let blockList = blocks.map(unmarshalTx);
+          let txList = "["
+
+          for(var i=0;i<blockList.length-2;i++){
+              if(i<blockList.length-2){
+                  txList += blockList[i] + ","
+              }
+              if(i==blockList.length-2){
+                txList += blockList[i]
+              }
+          }
+
+          txList = txList.slice(0,-1)
+          txList += "]"
+          logger.info(txList)
+          //txList = text.replace("/\\/ig","")
+          return JSON.parse(txList);
+        }
+
+        function unmarshalBlock(block) {
+            const transactions = block.data.data
+            const transactionList = transactions.map((tx)=>{
+                tx = tx.payload.data.actions
+                if(typeof(tx) == "object"){
+                    return tx[0].payload.action.proposal_response_payload.extension.results.ns_rwset[0].rwset.writes[0].value
+                }
+            });
+            return {
+                    id: block.header.number.toString(),
+                    fingerprint: block.header.data_hash.slice(0, 20),
+                    transactionList,
+            };
+            
+        }
+        function unmarshalTx(block) {
+            const transactions = block.data.data
+            const transactionList = transactions.map((tx)=>{
+                tx = tx.payload.data.actions
+                if(typeof(tx) == "object"){
+                    return tx[0].payload.action.proposal_response_payload.extension.results.ns_rwset[0].rwset.writes[0].value
+                }
+            });
+            return transactionList;
+            
+        }
 }
 
 module.exports = BlockchainService;

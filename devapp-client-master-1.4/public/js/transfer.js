@@ -1,4 +1,3 @@
-
 function getList(id){
     return fetch('/api/house/'+id)
     .then((result)=>result.json())
@@ -7,66 +6,84 @@ function getList(id){
 function setList(parsed_json){
     var len = parsed_json.length;
     let list_body = document.querySelector(".list-body");
-    
+    let transferPage = document.querySelector(".transferPage");
     console.log(list_body);
-    let list_body_children = document.querySelectorAll(".list-body>div");
+    let list_body_children = document.querySelectorAll(".transferPage>div");
     for(var i=0;i<list_body_children.length;i++){
         list_body_children[i].remove();
     }
     console.log(list_body_children);
-    for(var i=0;i<len;i++){
-        var div_class = document.createElement("div");
-        div_class.className = "panel-"+i;
-        var div_info = document.createElement("div");
-
-
-        div_info.className="info";
-        var p_id = document.createElement("p");
-        p_id.className="id";
-        p_id.append("아파트");
-        div_info.append(p_id);
-
-
-        var p_place = document.createElement("p");
-        p_place.className="place";
-        p_place.append(parsed_json[i].Id);
-        div_info.append(p_place);
-
-
-        var p_address = document.createElement("p");
-        p_address.className="address";
-        p_address.append(parsed_json[i].Address);
-        div_info.append(p_address);
+        for(var i=0;i<len;i++){
+        
+            var div_class = document.createElement("div");
+            div_class.className = "panel-"+i;
+            var div_info = document.createElement("div");
+            div_info.className="info";
+            var p_id = document.createElement("p");
+            p_id.className="id";
+            p_id.append("아파트");
+            div_info.append(p_id);
     
-        var div_price = document.createElement("div");
-        div_price.className="info-2";
-
-
-        var price_div = document.createElement("div");
-        price_div.className = "pp";
-
-
-        var p_price = document.createElement("p");
-        p_price.className="price";
-
-        p_price.append(parsed_json[i].Price);
-        price_div.append(p_price);
-
-        div_price.append(price_div);
-
-        var btn_smt = document.createElement("input");
-        btn_smt.className="myBtn";
-        btn_smt.type = "button";
-        btn_smt.value = "거래";
-        div_price.append(btn_smt);
-
-
-        div_class.append(div_info);
-        div_class.append(div_price);           
-        list_body.append(div_class);
-    }
-
+    
+            var p_place = document.createElement("p");
+            p_place.className="place";
+            p_place.append(parsed_json[i].Id);
+            div_info.append(p_place);
+    
+    
+            var p_address = document.createElement("p");
+            p_address.className="address";
+            p_address.append(parsed_json[i].Address);
+            div_info.append(p_address);
+        
+            var div_price = document.createElement("div");
+            div_price.className="info-2";
+    
+    
+            var price_div = document.createElement("div");
+            price_div.className = "pp";
+    
+    
+            var p_price = document.createElement("p");
+            p_price.className="price";
+            var price_name = parsed_json[i].Price;
+            var price_sum="";
+            if(price_name.length%3==0){
+                price_sum+=price_name.slice(0,3);
+                for(let i=price_name.length-3;i>=6;i-=3){
+                    price_sum+=","+price_name.slice(i-3,i);
+                }
+                price_sum+=","+price_name.slice(price_name.length-3);
+            }else if(price_name.length%3==1){
+                price_sum+=price_name.slice(0,2);
+                for(let i=1;i<price_name.length-3;i+=3){
+                    price_sum+=","+price_name.slice(i,i+3);
+                }
+                price_sum+=","+price_name.slice(price_name.length-3);
+            }else if(price_name.length%3==2){
+                price_sum+=price_name.slice(0,2);
+                for(let i=2;i<price_name.length-3;i+=3){
+                    price_sum+=","+price_name.slice(i,i+3);
+                }
+                price_sum+=","+price_name.slice(price_name.length-3);
+            }
+            price_div.append(price_sum);
+            price_div.append(p_price);
+    
+            div_price.append(price_div);
+    
+            var btn_smt = document.createElement("input");
+            btn_smt.className="myBtn";
+            btn_smt.type = "button";
+            btn_smt.value = "거래";
+            div_price.append(btn_smt);
+            div_class.append(div_info);
+            div_class.append(div_price);           
+            transferPage.append(div_class);
+        }
+    
 }
+
 function setName(){
     fetch('/api/user').then((evt)=>{
         evt.json().then((name)=>{
@@ -83,14 +100,15 @@ function setName(){
 }
 
 function setPage(parsed_json){
-    var del_pages = document.querySelectorAll(".pagination-container>.pagination");
+    var del_pages = document.querySelectorAll(".pagination>li");
     for( var i=0;i<del_pages.length;i++){
         del_pages[i].remove();
     }
+   // console.log(parsed_json);
     //1. 페이지 만들기
     //2. section에따라 좌우이동 display결정
     var pagination_container_div = document.querySelector('.pagination-container');
-    console.log(pagination_container_div);
+   //console.log(pagination_container_div);
     var pagination_ul = document.querySelector('.pagination');
     if(parsed_json['is_first_page']!==true){
         var prev_a = document.createElement("a");
@@ -112,7 +130,11 @@ function setPage(parsed_json){
             page_a.className = "page-link";
             page_a.href="javascript:list("+i+")";
             page_a.id = "page-"+i;
+            if(i===parsed_json['page_num']){
+                page_a.style.color ="red";
+            }
             page_a.append(i);
+            
             var page_li= document.createElement('li');
             page_li.className="page-item";
             page_li.append(page_a);
@@ -135,86 +157,53 @@ function setPage(parsed_json){
 }
 
 async function list(id){
+    // window.location.reload();
     try{
-       var a =  await getList(id);
+      var a =  await getList(id);
       setList(a['result']);
+      setPage(a);
       setName();
     }catch(error){
         console.log(error);
     }
 }
 
-window.onload = async function(){
-   await list(1);
-   this.setName();
-   startModal();
-   await transfer_list();
-}
 
-       // Get the modal
-      
-function startModal(){
+async function startModal(){
     // Get the modal
     var modal = document.getElementById('myModal');
+    var mobileMenu = document.querySelector('.menuModal');
         
     // Get the button that opens the modal
     var btn = document.querySelectorAll(".myBtn");
-
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];                                          
 
     // When the user clicks on the button, open the modal 
     for(var i=0;i<btn.length;i++){
         btn[i].onclick = function() {
+            var addr = this.parentNode.previousSibling.childNodes[1].textContent;
+            var add_input = document.getElementById('select-addr');
+            add_input.value=addr;
             modal.style.display = "block";
+            
         }
     }
     // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
+    span.onclick = async function() {
         modal.style.display = "none";
+      
     }
 
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
+    window.onclick = async function(event) {
+        if (event.target == modal || event.target == mobileMenu) {
             modal.style.display = "none";
+            mobileMenu.style.display = "none";
+          
         }
     }
 }    
-
-function setPage(parsed_json){
-    console.log(typeof parsed_json);
-    //1. 페이지 만들기
-    //2. section에따라 좌우이동 display결정
-    var del_pages = document.querySelectorAll(".pagination > li");
-    for( var i=0;i<del_pages.length;i++){
-        del_pages[i].remove();
-    }
-    var pagenation_ul = document.querySelector('.pagenation');
-    if(parsed_json['is_first_page']!==true){
-        var prev_a = document.createElement("a");
-        prev_a.className = "page-link";
-        prev_a.href="";
-        prev_a.append("이전");
-        pagenation_ul.append(prev_a);
-    }
-    var section_num = parsed_json['section-num'];
-    var start_page = 5*(section_num-1)+1;
-    for(var i=start_page;i<start_page+5;i++){
-        var page_a = document.createElement("a");
-        page_a.className = "page-link";
-        page_a.href="";
-        page_a.append(i);
-        pagenation_ul.append(page_a);
-    }
-    if(parsed_json['is_last_page']!==true){
-        var next_a = document.createElement("a");
-        next_a.className = "page-link";
-        next_a.href="";
-        next_a.append("다음");
-        pagenation_ul.append(next_a);
-    }
-}
 
 async function transfer_list(){
     let submit = document.querySelector('.search');
@@ -257,20 +246,19 @@ async function transfer_list(){
                 transfer_list.append(transfer_ul);
             }
         })
-    }).then(()=>{
+    }).then(async()=>{
         var select_user_li = document.querySelector('.transferlist');
         console.log(select_user_li);
         select_user_li.addEventListener('click',(evt)=>{
-            let house = document.querySelector('.place').textContent;
+            let house = document.getElementById('select-addr').value;
             let name = document.getElementById('transferUserName').textContent;
-            console.log(house,': ',name);
-            console.log(JSON.stringify({Id: house, OwnerId: name}))
+            let price = document.getElementById('transferPrice').value;
             fetch('/api/user/house',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 }, 
-                body: JSON.stringify({Id: house, OwnerId: name})
+                body: JSON.stringify({Id: house, OwnerId: name,Price: price,Timestamp:new Date()})
             }).then((result)=>{
                 if(result.status==200){
                     let modal = document.querySelector('.modal');
@@ -279,14 +267,21 @@ async function transfer_list(){
                 }else{
                     alert("전송 에러");
                 }
-            }).then(()=>{
-                list()
+            }).then(async ()=>{
+                await list(1);
                 setName();
+                startModal();
             })
         })
     })
-
-
 })
 }
+
+window.onload =  async function()
+{
+    await list(1);
+    await startModal();
+    await transfer_list();
+    
+};
 

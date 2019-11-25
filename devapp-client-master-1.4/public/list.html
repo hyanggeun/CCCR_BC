@@ -8,85 +8,108 @@
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
      <script src="https://kit.fontawesome.com/f04cea4735.js" crossorigin="anonymous"></script>
      <link rel="stylesheet" href="css/list.css">
+     <script src="js/mobile.js" defer></script>
  </head>
  <body>
-    <header>
-        <nav>
-            <div class="nav-container">
-                <div class="nav-left">
-                    <ul>
-                        <li>
-                            <div class="logo"></div>
-                        </li>
-                        <li>
-                            <p>CCCR 2-2</p>
-                        </li>
-                    </ul>
+    <div class="wrap">
+        <div class="main">
+            <aside class="wide-menu" >           
+                <div class="sideIcons">
+                    <div><div class="logo"></div></div>
+                    <div>
+                            <a href="/register" id="registerEvent"><i class="fas fa-file-signature"></i></a>
+                            <a href="/register" class="side-tag-r">건물 등록</a>
+                    </div>
+                    <div>
+                        <a href="/transferhouse" id="transferEvent"><i class="fas fa-exchange-alt"></i></a>
+                        <a href="/transferhouse" class="side-tag-t">소유권 이전</a>
+                    </div>
+                    <div>
+                        <a href="/list" id="listEvent"><i class="fas fa-list-ul"></i></a>
+                        <a href="/list" class="side-tag-l">등본 조회</a>
+                    </div>
                 </div>
-                <div class="nav-right">
-                    <ul>
-                        <li><a href="#"><i class="fas fa-user-circle"></i></a></li>
-                        <li><a href="#" class="user"></a></li>
-                        <li><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="mobile-bar">
-                <i class="fas fa-bars" id="open"></i>
-                <p>Transfer</p>
-            </div>
-        </nav>
-        </header>
-    <div class="container">
-    <h1>Transaction list</h1>
-    <div class="content">
-            <div class="menuModal">
-                <aside class="mobile-menu">
-                    <ul>
-                        <li>
-                            <div>
-                                <p>menu</p>
-                                <i class="fas fa-times closeTab"></i>
-                            </div>
-                        </li>
-                        <li><a href="/register">Register</a></li>
-                        <li><a href="/transferhouse">Transfer</a></li>
-                        <li><a href="/list">List</a></li>
-                    </ul>
-                </aside>
-            </div>
-            <aside class="wide-menu">
-                <ul>
-                    <li><a href="/register">Register</a></li>
-                    <li><a href="/transferhouse">Transfer</a></li>
-                    <li><a href="/list">List</a></li>
-                </ul>
             </aside>
-        <div class="list-body">
-         <h2>Transfer</h2>
-        </div>
-
-    </div>
-    </div>
-
-
-
-    <footer>
-        <div class="footer-container">
-            <div class="copyright">
-                <p>
-                    Copyright 2019. CCCR2-2 Corp. ALL RIGHTS RESERVED.<br>
-                    Based on <span>HyperledgerFabric</span> 
-                </p>
+            <div class="container">
+            <div class="content">
+                <header>
+                        <nav>
+                            <div class="nav-container">
+                                <div class="nav-left">
+                                    <ul>
+                                        <li>
+                                            <i class="fas fa-list-ul"></i>
+                                            <h1>등본 조회</h1>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="nav-right">
+                                    <ul>
+                                        <li><a href="#"><i class="fas fa-user-circle"></i></a></li>
+                                        <li><a href="#" class="user"></a></li>
+                                        <li><a href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mobile-bar">
+                                <i class="fas fa-bars" id="open"></i>
+                            </div>
+                        </nav>
+                        <div class="menuModal">
+                            <aside class="mobile-menu">
+                                <ul>
+                                    <li>
+                                        <div>
+                                            <p>menu</p>
+                                            <i class="fas fa-times closeTab"></i>
+                                        </div>
+                                    </li>
+                                    <li><a href="/register">건물 등록</a></li>
+                                    <li><a href="/transferhouse">소유권 이전</a></li>
+                                    <li ><a href="/list">등본 조회</a></li>
+                                </ul>
+                            </aside>
+                        </div>
+                </header>
+                <div class="list-wrap">
+                    <div class="list-body">
+                    
+                    </div>
+                </div>
             </div>
+            <div class="block" id="ledger">
+                <div class="card-container" id="card-container">
+                </div>
+                <i class="fas fa-sort-down" id="sort-btn"  style="transform:rotate(180deg);"></i>
+            </div>
+        <footer>
+                <div class="footer-container">
+                    <div class="copyright">
+                        <p>
+                            Copyright 2019. CCCR2-2 Corp. ALL RIGHTS RESERVED.<br>
+                            Based on <span>HyperledgerFabric</span> 
+                        </p>
+                    </div>
+                </div>
+            </footer>
         </div>
-    </footer>
-    <div class="block" id="ledger">
-        <div class="card-container" id="card-container">
         </div>
-        <i class="fas fa-sort-down" id="sort-btn"  style="transform:rotate(180deg);"></i>
     </div>
+
+    <!-- The Modal -->
+<div id="txModal" class="w3-modal">
+    <div class="w3-modal-content">
+      <div class="w3-container">
+                <div class="tx-container">
+                    <div id="txContent"  onclick="">
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
     <script src="js/list.js"></script>
     <script src="js/block.js"></script>
+    <script src="js/layout.js"></script>
 </body>
 </html>

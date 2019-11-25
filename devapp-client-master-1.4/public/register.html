@@ -2,77 +2,115 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>하이퍼레저</title>
+    <title>하이퍼레저 레지스터</title>
      <!-- 리셋.css -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
-    <script src="https://kit.fontawesome.com/f04cea4735.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/register.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-</head>
-<body>
-    <header>
-        <nav>
-            <div class="nav-container">
-                <div class="nav-left">
-                    <ul>
-                        <li><div class="logo"></div></li>    
-                        <li><p>CCCR 2-2</p></li>
-                    </ul>
-                </div>
-                <div class="nav-right">
-                    <ul>
-                        <li><a href="#"><i class="fas fa-user-circle"></i></a></li>
-                        <li><a href="#" class="user"></a></li>
-                        <li><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>
-                    </ul>
+     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+     <script src="https://kit.fontawesome.com/f04cea4735.js" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="css/register.css">
+     <script src="js/mobile.js" defer></script>
+ </head>
+ <body>
+    <div class="wrap">
+        <div class="main">
+                <aside class="wide-menu" >           
+                        <div class="sideIcons">
+                            <div><div class="logo"></div></div>
+                            <div>
+                                <a href="/register" id="registerEvent"><i class="fas fa-file-signature"></i></a>
+                                <a href="/register" class="side-tag-r">건물 등록</a>
+                            </div>
+                            <div>
+                                <a href="/transferhouse" id="transferEvent"><i class="fas fa-exchange-alt"></i></a>
+                                <a href="/transferhouse" class="side-tag-t">소유권 이전</a>
+                            </div>
+                            <div>
+                                <a href="/list" id="listEvent"><i class="fas fa-list-ul"></i></a>
+                                <a href="/list" class="side-tag-l">등본 조회</a>
+                            </div>
+                        </div>
+                    </aside>
+            <div class="container">
+            <div class="content">
+                <header>
+                        <nav>
+                            <div class="nav-container">
+                                <div class="nav-left">
+                                    <ul>
+                                        <li>
+                                            <i class="fas fa-file-signature"></i>
+                                            <h1>건물 등록</h1>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="nav-right">
+                                    <ul>
+                                        <li><a href="#"><i class="fas fa-user-circle">                                                                                                                                                                                                                                                                                                      </i></a></li>
+                                        <li><a href="#" class="user"></a></li>
+                                        <li><a href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mobile-bar">
+                                <i class="fas fa-bars" id="open"></i>
+                            </div>
+                        </nav>
+                        <div class="menuModal">
+                            <aside class="mobile-menu">
+                                <ul>
+                                    <li>
+                                        <div>
+                                            <p>menu</p>
+                                            <i class="fas fa-times closeTab"></i>
+                                        </div>
+                                    </li>
+                                    <li><a href="/register">건물 등록</a></li>
+                                    <li><a href="/transferhouse">소유권 이전</a></li>
+                                    <li><a href="/list">등본 조회</a></li>
+                                </ul>
+                            </aside>
+                        </div>
+                </header>
+                <div class="registerContent">
+                    <form class="rege-form" action="" method="">
+                        <p>건물명</p>
+                        <input type="text" id="name" required="" oninvalid="this.setCustomValidity('건물명을 입력해 주세요')" oninput="setCustomValidity('')" maxlength="20">
+                        <p>주소<p>
+                        <input type="text" id="address" required="" oninvalid="this.setCustomValidity('주소를 입력해주세요')" oninput="setCustomValidity('')" >
+                        <p>가격 (단위:원)</p>
+                        <input type="number" id="price" required="" oninvalid="this.setCustomValidity('가격을 입력해주세요')" oninput="setCustomValidity('')" maxlength="10">
+                        <input type="submit" id="smt" value="등록">
+                    </form>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container-fluid">
-    <h1><span class="badge badge-primary">Register</span></h1>
-    <div class="row">
-        <div class="col-2">
-            <ul class="list-group">
-                <li class="list-group-item"><a href="/register">Register</a></li>
-                <li class="list-group-item"><a href="/transferhouse">Transfer</a></li>
-                <li class="list-group-item"><a href="/list">List</a></li>
-            </ul>
+        <footer>
+                <div class="footer-container">
+                    <div class="copyright">
+                        <p>
+                            Copyright 2019. CCCR2-2 Corp. ALL RIGHTS RESERVED.<br>
+                            Based on <span>HyperledgerFabric</span> 
+                        </p>
+                    </div>
+                </div>
+            </footer>
         </div>
-        <div class="col-8 registerContent">
-            <h2>Register</h2>
-            <form class="rege-form" method="POST">
-                <p>건물명</p>
-                <input type="text" id="name" required="" oninvalid="this.setCustomValidity('건물명을 입력해 주세요')" oninput="setCustomValidity('')" maxlength="10">
-                <p>주소<p>
-                <input type="text" id="address" required="" oninvalid="this.setCustomValidity('주소를 입력해주세요')" oninput="setCustomValidity('')" maxlength="10">
-                <p>가격 (단위:억)</p>
-                <input type="number" id="price" required=""  oninvalid="this.setCustomValidity('가격을 입력해주세요')" oninput="setCustomValidity('')" maxlength="10">
-                <input type="submit" id="smt" value="등록">
-            </form>
-        </div>      
-    </div>
+        </div>
     </div>
 
-    <script src="js/register.js"></script>    
-    
-    <button data-toggle="collapse" data-target="#demo" type="button" class="btn btn-primary btn-lg btn-block mt-5">원장</button>
-
-    <div id="demo" class="collapse">
-        <iframe src="./socketTest.html" style="height:200px;width: 100%;"></iframe>
+    <!-- The Modal -->
+<div id="txModal" class="w3-modal" style="display: none;">
+    <div class="w3-modal-content">
+      <div class="w3-container" style="padding:20px;">
+        <span onclick="document.getElementById('txModal').style.display='none'"
+        class="w3-button w3-display-topright">&times;</span>
+        <div id="txContent"></div>
+      </div>
     </div>
-        
-    <footer>
-        <div class="footer-container">
-            <p>
-                Copyright 2019. CCCR2-2 Corp. ALL RIGHTS RESERVED.<br>
-                Based on <span>HyperledgerFabric</span> 
-            </p>
-        </div>
-    </footer>
+  </div>
+
+    <script src="js/register.js"></script>
+    <script src="js/layout.js"></script>
 </body>
 </html>
+

@@ -1,5 +1,7 @@
 @charset "UTF-8";
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+input[type=submit] {-webkit-appearance:none;}/*아이폰 옵션*/
+
 footer .footer-container {
   margin: 0 auto;
   max-width: 1080px;
@@ -34,10 +36,10 @@ nav .nav-container {
         justify-content: center;
         align-items: center; }
         nav .nav-container .nav-left ul li .logo {
-          background: url("ca@2x.png") no-repeat;
+          background: url("reg.png") no-repeat;
           background-size: 100%;
-          height: 30px;
-          width: 30px;
+          height: 60px;
+          width: 60px;
           margin-right: 20px; }
         nav .nav-container .nav-left ul li a {
           margin-right: 30px;
@@ -80,11 +82,11 @@ html {
     align-items: center;
     margin: 0 auto; }
     html .container .logo {
-      background: url("./ca@2x.png") no-repeat;
+      background: url("reg.png") no-repeat;
       background-size: 100%;
-      height: 80px;
-      width: 80px;
-      margin: 40px auto 10px; }
+      height: 120px;
+      width: 120px;
+      margin: 40px auto 20px; }
     html .container .login-page {
       display: block;
       margin: 10px auto;

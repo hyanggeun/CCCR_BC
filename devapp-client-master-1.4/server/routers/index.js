@@ -12,9 +12,14 @@ router.get('/login',(req,res)=>{
 })
 
 router.post('/login',
-passport.authenticate('local',{successRedirect:'/list.html',failureRedirect:'/login'})
+passport.authenticate('local',
+{
+    successRedirect:'/list.html',
+    failureRedirect: '/',
+    failureFlash:true, 
+    failureFlash: 'Invalid username or passwerd.'
+})
 );
-
 
 router.get('/logout',(req,res)=>{
     req.logout();

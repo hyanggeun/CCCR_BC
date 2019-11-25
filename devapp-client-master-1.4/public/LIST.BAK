@@ -1,91 +1,217 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>하이퍼레저 리스트</title>
-     <!-- 리셋.css -->
-     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
-     <script src="https://kit.fontawesome.com/f04cea4735.js" crossorigin="anonymous"></script>
-
-     <link rel="stylesheet" href="css/list.css">
- </head>
- <body>
-    <header>
-        <nav>
-            <div class="nav-container">
-                <div class="nav-left">
-                    <ul>
-                        <li>
-                            <div class="logo"></div>
-                        </li>
-                        <li>
-                            <p>CCCR 2-2</p>
-                        </li>
-                    </ul>
+<body>
+<div class="wrap">
+    <div class="main">
+        <aside class="wide-menu" >           
+            <div class="sideIcons">
+                <div><div class="logo"></div></div>
+                <div>
+                    <a class="overEvent" href="/register"><i class="fas fa-file-signature"></i></a>
+                    <a href="/register" class="side-tag">Register</a>
                 </div>
-                <div class="nav-right">
-                    <ul>
-                        <li><a href="#"><i class="fas fa-user-circle"></i></a></li>
-                        <li><a href="#" class="user"></a></li>
-                        <li><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>
-                    </ul>
-                </div>
+                <div><a href="/transferhouse"><i class="fas fa-exchange-alt"></i></a></div>
+                <div><a href="/list"><i class="fas fa-list-ul"></i></a></div>
             </div>
-            <div class="mobile-bar">
-                <i class="fas fa-bars" id="open"></i>
-                <p>Transfer</p>
-            </div>
-        </nav>
-        </header>
+        </aside>
     <div class="container">
-    <h1>Transaction list</h1>
-    <div class="content">
-            <div class="menuModal">
-                <aside class="mobile-menu">
-                    <ul>
-                        <li>
-                            <div>
-                                <p>menu</p>
-                                <i class="fas fa-times closeTab"></i>
+        <div class="content">
+            <header>
+                    <nav>
+                        <div class="nav-container">
+                            <div class="nav-left">
+                                <ul>
+                                    <li>
+                                        <i class="fas fa-list-ul"></i>
+                                        <h1>List</h1>
+                                    </li>
+                                </ul>
                             </div>
-                        </li>
-                        <li><a href="/register">Register</a></li>
-                        <li><a href="/transferhouse">Transfer</a></li>
-                        <li><a href="/list">List</a></li>
-                    </ul>
-                </aside>
+                            <div class="nav-right">
+                                <ul>
+                                    <li><a href="#"><i class="fas fa-user-circle"></i></a></li>
+                                    <li><a href="#" class="user"></a></li>
+                                    <li><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mobile-bar">
+                            <i class="fas fa-bars" id="open"></i>
+                        </div>
+                    </nav>
+                    <div class="menuModal">
+                        <aside class="mobile-menu">
+                            <ul>
+                                <li>
+                                    <div>
+                                        <p>menu</p>
+                                        <i class="fas fa-times closeTab"></i>
+                                    </div>
+                                </li>
+                                <li><a href="/register">Register</a></li>
+                                <li><a href="/transferhouse">Transfer</a></li>
+                                <li><a href="/list">List</a></li>
+                            </ul>
+                        </aside>
+                    </div>
+            </header>
+            <div class="list-wrap">
+                <div class="list-body">
+                    <div class="transferPage">
+                        <div class="panel-1">
+                            <div class="info-2">
+                                <div class="pp">
+                                    <p class="username">BOB</p>
+                                    <p class="price">24억1,000</p>
+                                </div>
+                            </div>
+                            <div class="info">
+                                <p class="id">아파트 <i class="fas fa-chevron-down"></i></p>
+                                <p class="place">반포동 반포 자이</p>
+                                <p class="address">서울특별시 서초구 반포동 20-43</p>
+                            </div>
+                            <i class="fas fa-city"></i>
+                        </div>
+                        <div class="panel-2">
+                            <div class="info-2">
+                                <div class="pp">
+                                    <p class="username">BOB</p>
+                                    <p class="price">24억1,000</p>
+                                </div>
+                            </div>
+                            <div class="info">
+                                <p class="id">아파트 <i class="fas fa-chevron-down"></i></p>
+                                <p class="place">반포동 반포 자이</p>
+                                <p class="address">서울특별시 서초구 반포동 20-43</p>
+                            </div>
+                            <i class="fas fa-city"></i>
+                        </div>
+                        <div class="panel-3">
+                            <div class="info-2">
+                                <div class="pp">
+                                    <p class="username">BOB</p>
+                                    <p class="price">24억1,000</p>
+                                </div>
+                            </div>
+                            <div class="info">
+                                <p class="id">아파트 <i class="fas fa-chevron-down"></i></p>
+                                <p class="place">반포동 반포 자이</p>
+                                <p class="address">서울특별시 서초구 반포동 20-43</p>
+                            </div>
+                            <i class="fas fa-city"></i>
+                        </div>
+                        <div class="panel-4">
+                            <div class="info-2">
+                                <div class="pp">
+                                    <p class="username">BOB</p>
+                                    <p class="price">24억1,000</p>
+                                </div>
+                            </div>
+                            <div class="info">
+                                <p class="id">아파트 <i class="fas fa-chevron-down"></i></p>
+                                <p class="place">반포동 반포 자이</p>
+                                <p class="address">서울특별시 서초구 반포동 20-43</p>
+                            </div>
+                            <i class="fas fa-city"></i>
+                        </div>
+                    </div>
+                    <div class="pagination-container">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link preiv" href="#">이전</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                            <li class="page-item"><a class="page-link next" href="#">다음</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <aside class="wide-menu">
-                <ul>
-                    <li><a href="/register">Register</a></li>
-                    <li><a href="/transferhouse">Transfer</a></li>
-                    <li><a href="/list">List</a></li>
-                </ul>
-            </aside>
-        <div class="list-body">
-         <h2>Transfer</h2>
         </div>
-
-    </div>
-    </div>
-
-
-
-    <footer>
-        <div class="footer-container">
-            <p>
-                Copyright 2019. CCCR2-2 Corp. ALL RIGHTS RESERVED.<br>
-                Based on <span>HyperledgerFabric</span> 
-            </p>
-        <div id="blockEp" class="" style="display: flex; flex-flow: column; align-items: center; position:relative; overflow-y:hidden;" >
-            <iframe src="./socketTest.html" ></iframe>
-            <button type="button" class="" style="">원장</button>
-        </div>
-
-        </div>
-    </footer>
     
-    <script src="js/list.js"></script>
+    <div class="block" id="ledger">
+            <div class="card-container">
+                <div class="card" >
+                    <div class="card-body">
+                    <h6><span># 1</span></h6>
+                    <p>안녕: f0ef6fa1f9a61ab21d97</p>
+                    </div>
+                    <ul >
+                        2019-11-08T07:42:23.731Z
+                    </ul>
+                </div>
+                <div class="card" >
+                    <div class="card-body">
+                    <h6><span>ID 1</span></h6>
+                    <p>안녕: f0ef6fa1f9a61ab21d97</p>
+                    </div>
+                    <ul >
+                        2019-11-08T07:42:23.731Z
+                    </ul>
+                </div>
+                <div class="card" >
+                    <div class="card-body">
+                    <h6><span>ID 1</span></h6>
+                    <p>안녕: f0ef6fa1f9a61ab21d97</p>
+                    </div>
+                    <ul >
+                        2019-11-08T07:42:23.731Z
+                    </ul>
+                </div>
+                <div class="card" >
+                    <div class="card-body">
+                    <h6><span>ID 1</span></h6>
+                    <p>안녕: f0ef6fa1f9a61ab21d97</p>
+                    </div>
+                    <ul >
+                        2019-11-08T07:42:23.731Z
+                    </ul>
+                </div>
+                <div class="card" >
+                    <div class="card-body">
+                    <h6><span>ID 1</span></h6>
+                    <p>안녕: f0ef6fa1f9a61ab21d97</p>
+                    </div>
+                    <ul >
+                        2019-11-08T07:42:23.731Z
+                    </ul>
+                </div>
+                <div class="card" >
+                    <div class="card-body">
+                    <h6><span>ID 1</span></h6>
+                    <p>안녕:f0ef6fa1f9a61ab21d97</p>
+                    </div>
+                    <ul >
+                        2019-11-08T07:42:23.731Z
+                    </ul>
+                </div>
+            </div>
+            <i class="fas fa-sort-down" id="sort-btn"  style="transform:rotate(180deg);"></i>
+            <script src="js/block-action.js" defer></script>
+    </div>
+    <footer>
+            <div class="footer-container">
+                <p class="copyright">
+                    Copyright 2019. CCCR2-2 Corp. ALL RIGHTS RESERVED.<br>
+                    Based on <span>HyperledgerFabric</span> 
+                </p>
+            </div>
+    </footer>
+    </div>
+    </div>
+</div>
+<script>
+let block=document.querySelectorAll(".side-tag");
+window.onload = function(){
+    document.querySelector(".overEvent").addEventListener("mouseover",overover)
+    document.querySelector(".overEvent").addEventListener("mouseout",outout)
+}
+function overover(){
+    console.log(this)
+    block.style.display = "none";
+}
+function outout(){
+    console.log(this)
+    document.querySelectorAll(".side-tag").style.display = "block";
+}
+</script>
 </body>
-</html>
