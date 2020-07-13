@@ -63,7 +63,7 @@
     "prettier": "^1.7.4",
     "protractor": "~5.1.0",
     "sinon": "^2.1.0",
-    "standard-version": "^4.2.0",
+    "standard-version": "^8.0.1",
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
     "typescript": "~2.4.0",
